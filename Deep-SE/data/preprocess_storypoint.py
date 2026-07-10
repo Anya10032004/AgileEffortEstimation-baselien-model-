@@ -36,7 +36,7 @@ def main():
         if ls[1] == '1': valid_ids.append(count)
         if ls[2] == '1': test_ids.append(count)
 
-    print 'ntrain, nvalid, ntest: ', len(train_ids), len(valid_ids), len(test_ids)
+    print('ntrain, nvalid, ntest: ', len(train_ids), len(valid_ids), len(test_ids))
 
     train_title, train_description, train_labels = title[train_ids], description[train_ids], labels[train_ids]
     valid_title, valid_description, valid_labels = title[valid_ids], description[valid_ids], labels[valid_ids]
@@ -61,7 +61,7 @@ def main():
               valid_t, valid_d, valid_labels,
               test_t, test_d, test_labels), f, -1)
     f.close()
-    print 'saved the output at files/' + project + '.pkl.gz'
+    print('saved the output at files/' + project + '.pkl.gz')
 
 
 if __name__ == '__main__':

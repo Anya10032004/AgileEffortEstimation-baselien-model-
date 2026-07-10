@@ -77,7 +77,7 @@ if datasetDict_ == 'Pretrain_Dataset':
     # Preprocess pre-train data: load, divide, and build dictionary and produce pickled data ready for pre-training
     for dataPre in dataPres:
         cmd = 'python preprocess_pretrain.py -path ' + data_path + ' -repo ' + dataPre
-        print cmd
+        print(cmd)
         os.system(cmd)
 else:
     if datasetDict_ == 'Choet_Dataset':
@@ -90,20 +90,22 @@ else:
     #  Divide the datasets to train-validation-test sets. It produces text files in which each bug is labelled with
     #  one of the three sets. This file is used by preprocess_storypoint.py to split the datasets.
     for project, repo in datasetDict.items():
-        print project + ' ' + repo
+        print(project + ' ' + repo)
+        print("lala")
         cmd = 'python divide_data_sortdate.py -path ' + data_path + ' -project ' + project + '_deep-se'
-        print cmd
-        os.system(cmd)
+        print(cmd)
+        os.system(r"C:\Users\Anya\OneDrive\Documents\GitHub\AgileEffortEstimation-baselien-model-\Deep-SE\data\divide_data_sortdate.py")
 
     # Preprocess the datasets for story point estimation: load, divide, and produce pickled data ready for training
     for project, repo in datasetDict.items():
-        print project + ' ' + repo
+        print(project + ' ' + repo)
         # Use the following statement for Deep-SE With pre-training
         cmd = 'python preprocess_storypoint.py -path ' + data_path + ' -project ' + project + '_deep-se -repo ' + repo
         # Use the following statement for Deep-SE Without pre-training
         # cmd = 'python preprocess_storypoint.py -path ' + data_path + ' -project ' + project + '_deep-se'
-        print cmd
-        os.system(cmd)
+        print(cmd)
+        print("lala  2")
+        os.system(r"C:\Users\Anya\OneDrive\Documents\GitHub\AgileEffortEstimation-baselien-model-\Deep-SE\data\preprocess_storypoint.py")
 
 
 

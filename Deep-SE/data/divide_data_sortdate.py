@@ -27,9 +27,9 @@ if trainingSize + validationSize + testSize == 100:
     numValidation = (validationSize * numData) / 100
     numTest = (testSize * numData) / 100
 
-    print "Total data: %s" % numData
-    print "Training size: %s, validation size: %s, testing size: %s" % (numTrain, numValidation, numTest)
-    print "Total: %s" % (numTrain + numValidation + numTest)
+    print("Total data: %s" % numData)
+    print("Training size: %s, validation size: %s, testing size: %s" % (numTrain, numValidation, numTest))
+    print("Total: %s" % (numTrain + numValidation + numTest))
 
     divided_set = numpy.zeros((len(keys), 3)).astype('int64')
 
@@ -47,4 +47,4 @@ if trainingSize + validationSize + testSize == 100:
 
     f.close()
 else:
-    print "check size"
+    print("check size")

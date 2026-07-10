@@ -63,10 +63,10 @@ def median_baseline(dataset, mae_rguess, path, test_y, train_y):
     median_mae = metrics.mean_absolute_error(test_y, median_list)
     median_mdae = metrics.median_absolute_error(test_y, median_list)
     median_sa = (1 - (median_mae / mae_rguess)) * 100
-    print 'median_train = %.5f' % numpy.median(train_y)
-    print 'median_mae   = %.5f' % median_mae
-    print 'median_mdae  = %.5f' % median_mdae
-    print 'median_sa    = %.5f' % median_sa
+    print('median_train = %.5f' % numpy.median(train_y))
+    print('median_mae   = %.5f' % median_mae)
+    print('median_mdae  = %.5f' % median_mdae)
+    print('median_sa    = %.5f' % median_sa)
     with open(path + '/' + dataset + '_median.txt', 'w') as median_f:
         ar = numpy.abs(numpy.subtract(test_y, median_list))
         for i in ar:
@@ -82,10 +82,10 @@ def mean_baseline(dataset, mae_rguess, path, test_y, train_y):
     mean_mae = metrics.mean_absolute_error(test_y, mean_list)
     mean_mdae = metrics.median_absolute_error(test_y, mean_list)
     mean_sa = (1 - (mean_mae / mae_rguess)) * 100
-    print 'mean train = %.5f' % numpy.mean(train_y)
-    print 'mean_mae   = %.5f' % mean_mae
-    print 'mean_mdae  = %.5f' % mean_mdae
-    print 'mean_sa    = %.5f' % mean_sa
+    print('mean train = %.5f' % numpy.mean(train_y))
+    print('mean_mae   = %.5f' % mean_mae)
+    print('mean_mdae  = %.5f' % mean_mdae)
+    print('mean_sa    = %.5f' % mean_sa)
     with open(path + '/' + dataset + '_mean.txt', 'w') as mean_f:
         ar = numpy.abs(numpy.subtract(test_y, mean_list))
         for i in ar:

@@ -90,4 +90,4 @@ if model == 'seq':
                                            '_reg' + reg + '_pre' + pretrain + '_pool' + pool + ' -hiddenLayer ' + hidd
                                     # file name e.g. MESOS_deep-se_lstm_highway_dim100_reginphid_prefixed_lm_poolmean.txt
                                     print(cmd)
-                                    os.system(cmd)
+                                    os.system(r"C:\Users\Anya\OneDrive\Documents\GitHub\AgileEffortEstimation-baselien-model-\Deep-SE\classification\training.py")
