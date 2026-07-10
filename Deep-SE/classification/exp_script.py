@@ -89,5 +89,5 @@ if model == 'seq':
                                     cmd += ' -saving ' + project + '_' + seq + '_' + nnet + '_dim' + dim + \
                                            '_reg' + reg + '_pre' + pretrain + '_pool' + pool + ' -hiddenLayer ' + hidd
                                     # file name e.g. MESOS_deep-se_lstm_highway_dim100_reginphid_prefixed_lm_poolmean.txt
-                                    print cmd
+                                    print(cmd)
                                     os.system(cmd)
