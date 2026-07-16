@@ -8,7 +8,7 @@ import preprocess
 
 
 def main():
-    # load training data:
+    # Getting the parameter for loading the dataset(ex: nama-nama dataset)[MODIFIKASI]
     args = preprocess.arg_passing(sys.argv)
     path = args['-path']
     project = args['-project']
@@ -16,10 +16,14 @@ def main():
         repo = args['-repo']
     else:
         repo = ''
+    
 
+
+    # Starting loading the dataset[MODIFIKASI]
     data_path = path + project + '.csv'
     title, description, labels = load_raw_text.load(data_path)
 
+    # After loading the dataset, we read the dataset[MODIFIKASI]
     if not os.path.isfile('files/' + project + '_3sets.txt'):
         raise Exception('expected file not found! file= files/' + project + '_3sets.txt')
     f = open('files/' + project + '_3sets.txt', 'r')
@@ -38,24 +42,32 @@ def main():
 
     print('ntrain, nvalid, ntest: ', len(train_ids), len(valid_ids), len(test_ids))
 
+    # After we read the dataset, we start dviding the dataset[KEMUNGKINAN BAGIAN INI DISKIP DI DATA KITA ]
     train_title, train_description, train_labels = title[train_ids], description[train_ids], labels[train_ids]
     valid_title, valid_description, valid_labels = title[valid_ids], description[valid_ids], labels[valid_ids]
     test_title, test_description, test_labels = title[test_ids], description[test_ids], labels[test_ids]
 
+
+    # Making a vocablary that maps to the number --> Because Model can only read numebers[MODIFIKASI]
+
+    # Making our own 
     if repo == '':
         # Use Deep-SE without pre-training
         dictionary = preprocess.build_dict(numpy.concatenate([train_title, train_description]))
+    # using the pre-trained(vocabulary yang udah ada)
     else:
         # Use Deep-SE with pre-training
         if not os.path.isfile('files/' + repo + '.dict.pkl.gz'):
             raise Exception('expected file not found! file= files/' + repo + '.dict.pkl.gz\nRepo name (for pre-training) is provided but the file is not!')
         f_dict = gzip.open('files/' + repo + '.dict.pkl.gz', 'rb')
         dictionary = cPickle.load(f_dict)
-
+    
+    # After we make the vocabulary, we start convert the text into numerik data[MODIFIKASI]
     train_t, train_d = preprocess.grab_data(train_title, train_description, dictionary)
     valid_t, valid_d = preprocess.grab_data(valid_title, valid_description, dictionary)
     test_t, test_d = preprocess.grab_data(test_title, test_description, dictionary)
 
+    # Save the result[MODIFIKASI]
     f = gzip.open('files/' + project + '.pkl.gz', 'wb')
     cPickle.dump((train_t, train_d, train_labels,
               valid_t, valid_d, valid_labels,

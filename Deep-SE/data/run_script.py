@@ -195,3 +195,9 @@ else: # After we pre-train Deep-SE, we will train it for story point estimation 
 #       │
 #       ▼
 # Produces .pkl.gz
+
+# For our data:
+#    1. Kita tidak akan or modifikasi bagian "divide_data_sortdate.py"
+#       karena data kita udah displit
+#    2. Yang penting outputnya seperti kayak sesudah diproses "preprocess_storypoint.py"
+#       jadi kemungkinan modifikasi di preprocess_storypoint.py
