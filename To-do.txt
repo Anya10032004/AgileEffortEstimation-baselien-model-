@@ -1,4 +1,6 @@
 To do list:
 1. We will Prepocess the data
-    - Sesuaikan dengan how we preprocess the data
+    - Sesuaikan dengan how we preprocess the data 
+        - Pahami code(OK)
+        - Mulai modifikasi sesuai kebutuhan 
     - Kita mulai preprocess the dataset
