@@ -5,7 +5,7 @@ import pickle
 import numpy
 import load_raw_text
 import preprocess
-import torch
+# import torch
 import pickle
 
 # with open("model.pkl", "rb") as f:
@@ -14,10 +14,7 @@ import pickle
 
 def main():
     # Getting the parameter for loading the dataset(ex: nama-nama dataset)[MODIFIKASI] ONE
-    print("lala 2")
     args = preprocess.arg_passing(sys.argv)
-    print("The arg: ")
-    print(args)
     path = args['-path']
     project = args['-project']
     if '-repo' in args.keys():
@@ -34,8 +31,13 @@ def main():
     ########################################################
 
     # Starting loading the dataset[MODIFIKASI] TWO
-    data_path = path + project + '.csv'
+    data_path = path + '\\' + project +  '.csv'
+    print(data_path)
+    print(' ')
+    print(' ')
+    print(' ')
     title, description, labels = load_raw_text.load(data_path)
+
 
     # After loading the dataset, we read the dataset[MODIFIKASI] three
     if not os.path.isfile('files/' + project + '_3sets.txt'):
