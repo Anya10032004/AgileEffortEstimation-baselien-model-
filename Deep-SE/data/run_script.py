@@ -1,4 +1,5 @@
 import os
+# from preprocess_storypoint import Preprocess
 
 # To get the datasets ready for training, run the following script. It will divide the datasets into train-validation-test sets and produce pickled data ready for training.
 Choet_Dataset = {
@@ -73,9 +74,12 @@ dataPres = [
 
 
 # To choose with the dataset to use 
-datasetDict_ = 'Porru_Dataset'  # 'Choet_Dataset' | 'Tawosi_Dataset' | 'Porru_Dataset' | 'Pretrain_Dataset'
-data_path = '../../datasets/' + datasetDict_ + '/'
-
+datasetDict_ = 'Porru_Dataset' 
+# 'Choet_Dataset' | 'Tawosi_Dataset' | 'Porru_Dataset' | 'Pretrain_Dataset'
+# data_path = '../../datasets/' + datasetDict_ + '/'
+project_root = r'C:\Users\Anya\OneDrive\Documents\GitHub\AgileEffortEstimation-baselien-model-'
+data_path = os.path.join(project_root, "dataset", datasetDict_)
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # if datasetDict_ = 'Pretrain_Dataset' --> Meaning we will use the datasets for pre-training Deep-SE.
 #                                          Before we will train the model for story point estimation, 
@@ -84,8 +88,13 @@ if datasetDict_ == 'Pretrain_Dataset':
     # Preprocess pre-train data: load, divide, and build dictionary and produce pickled data ready for pre-training
     for dataPre in dataPres:
         cmd = 'python preprocess_pretrain.py -path ' + data_path + ' -repo ' + dataPre
-        print(cmd)
-        os.system(cmd)
+        # os.system(r'C:\Users\Anya\OneDrive\Documents\GitHub\AgileEffortEstimation-baselien-model-\Deep-SE\data\preprocess_pretrain.py')
+        #  os.system(f'python preprocess_pretrain.py -path "{data_path}" -repo {dataPre}')
+        os.system(
+            f'python {os.path.join(script_dir, "preprocess_pretrain.py")} '
+            f'-path "{data_path}" '
+            f'-repo {dataPre}'
+            )
 else: # After we pre-train Deep-SE, we will train it for story point estimation using the datasets in datasetDict_.
     if datasetDict_ == 'Choet_Dataset':
         datasetDict = Choet_Dataset
@@ -101,12 +110,17 @@ else: # After we pre-train Deep-SE, we will train it for story point estimation 
         # Provide an instruction, teh instruction bellow has a meanimg:
         # "Hai Python, jalankan file preprocess_storypoint.py. Dataset yang akan diproses ada di folder ../../datasets/datasetDict/.(Variabel data_path) "
         # "Gunakan dataset [varaiabel project]_deep-se.csv."
+
         cmd = 'python divide_data_sortdate.py -path ' + data_path + ' -project ' + project + '_deep-se'
 
         # Process the instruction in the cmd variable
-        os.system(cmd) # The output: 
-        # os.system(r"C:\Users\Anya\OneDrive\Documents\GitHub\AgileEffortEstimation-baselien-model-\Deep-SE\data\divide_data_sortdate.py")
-
+        # os.system(r'C:\Users\Anya\OneDrive\Documents\GitHub\AgileEffortEstimation-baselien-model-\Deep-SE\data\divide_data_sortdate.py') 
+        os.system(
+            f'python {os.path.join(script_dir, "divide_data_sortdate.py")} '
+            f'-path "{data_path}" '
+            f'-project {project}_deep-se')
+        # print("lala 1")
+        # The output: 
         # The 'divide_data_sortdate.py' will:
         # Ex
         # input: MESOS_deep-se.csv.
@@ -134,7 +148,15 @@ else: # After we pre-train Deep-SE, we will train it for story point estimation 
         cmd = 'python preprocess_storypoint.py -path ' + data_path + ' -project ' + project + '_deep-se -repo ' + repo
 
         # Excecute the instruction in the cmd variable
-        os.system(cmd)
+        # os.system(r'C:\Users\Anya\OneDrive\Documents\GitHub\AgileEffortEstimation-baselien-model-\Deep-SE\data\preprocess_storypoint.py')
+        #os.system(f'python preprocess_storypoint.py -path "{data_path}" -project {project}_deep-se -repo {repo}')
+        os.system(
+            f'python {os.path.join(script_dir, "preprocess_storypoint.py")} '
+            f'-path "{data_path}" '
+            f'-project {project}_deep-se '
+            f'-repo {repo}'
+            )
+        # Preprocess()
         # os.system(r"C:\Users\Anya\OneDrive\Documents\GitHub\AgileEffortEstimation-baselien-model-\Deep-SE\data\preprocess_storypoint.py")
         # The 'preprocess_storypoint.py' will:
         # Ex

@@ -1,6 +1,6 @@
 import gzip
 import numpy
-import cPickle as pkl
+import Pickle as pkl
 import load_raw_text
 import preprocess
 import sys
@@ -14,7 +14,8 @@ def main():
 
     pretrain_path = path + repo + '.csv'
     pre_title, pre_descr = load_raw_text.load_pretrain(pretrain_path)
-    print 'number of datapoints:', len(pre_title)
+    print ('number of datapoints:', len(pre_title))
+
 
     n_train = len(pre_title) * 2 // 3
     ids = numpy.arange(len(pre_title))
@@ -30,12 +31,12 @@ def main():
     f_pre = gzip.open('files/' + repo + '.pkl.gz', 'wb')
     pkl.dump((pre_train, pre_valid, pre_valid), f_pre, -1)
     f_pre.close()
-    print 'saved the output at files/' + repo + '.pkl.gz'
+    print('saved the output at files/' + repo + '.pkl.gz')
 
     f = gzip.open('files/' + repo + '.dict.pkl.gz', 'wb')
     pkl.dump(dictionary, f, -1)
     f.close()
-    print 'saved the output at files/' + repo + '.dict.pkl.gz'
+    print('saved the output at files/' + repo + '.dict.pkl.gz')
 
 
 if __name__ == '__main__':

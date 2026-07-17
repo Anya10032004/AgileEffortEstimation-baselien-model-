@@ -16,18 +16,18 @@ def arg_passing(argv):
 
 
 def tokenize(sentences):
-    print 'Tokenizing..',
+    print('Tokenizing..'),
     text = "\n".join(sentences)
     tokenizer = Popen(tokenizer_cmd, stdin=PIPE, stdout=PIPE)
     tok_text, _ = tokenizer.communicate(text)
     toks = tok_text.split('\n')[:-1]
-    print 'Done'
+    print ('Done')
     return toks
 
 
 def build_dict(sentences):
     sentences = tokenize(sentences)
-    print 'Building dictionary..'
+    print ('Building dictionary..')
     wordcount = dict()
     for ss in sentences:
         words = ss.strip().lower().split()
@@ -43,7 +43,7 @@ def build_dict(sentences):
     sorted_idx = numpy.argsort(counts)[::-1]
     counts = numpy.array(counts)
 
-    print 'number of words in dictionary:', len(keys)
+    print('number of words in dictionary:', len(keys))
 
     worddict = dict()
 
@@ -54,7 +54,7 @@ def build_dict(sentences):
     for i, c in enumerate(sorted_idx):
         if counts[c] >= chosen_frequency: pos = i
 
-    print numpy.sum(counts), ' total words, ', pos, 'words with frequency >=', chosen_frequency
+    print(numpy.sum(counts), ' total words, ', pos, 'words with frequency >=', chosen_frequency)
 
     return worddict
 
@@ -69,6 +69,6 @@ def grab_data(title, description, dictionary):
             words = ss.strip().lower().split()
             seqs[i][idx] = [dictionary[w] if w in dictionary else 0 for w in words]
             if len(seqs[i][idx]) == 0:
-                print 'len 0: ', i, idx
+                print('len 0: ', i, idx)
 
     return seqs[0], seqs[1]
